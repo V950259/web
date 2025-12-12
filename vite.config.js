@@ -12,6 +12,11 @@ export default defineConfig({
         changeOrigin: true
       }
     }
-  }
+  },
+  build: {
+    // 确保 public 目录被正确复制
+    copyPublicDir: true
+  },
+  publicDir: "public"
 });
 

@@ -1,0 +1,37 @@
+{
+  "name": "AI 灵感路线规划",
+  "short_name": "路线规划",
+  "description": "基于高德地图的AI智能路线规划应用",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["travel", "navigation", "lifestyle"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "生成路线",
+      "short_name": "路线",
+      "description": "快速生成AI路线",
+      "url": "/",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
+
