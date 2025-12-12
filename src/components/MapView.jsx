@@ -13,7 +13,8 @@ export default function MapView({
   travelMode = "driving", // driving | walking | riding
   centerOverride,
   trafficOn = false,
-  onMapReady
+  onMapReady,
+  onCouponClick // 优惠券点击回调
 }) {
   const mapContainerRef = useRef(null);
   const mapInstance = useRef(null);
@@ -240,11 +241,54 @@ export default function MapView({
 
     // 标记所有点
     routePoints.forEach((p, idx) => {
-      const marker = new window.AMap.Marker({
-        position: p.position,
-        map,
-        label: { content: p.name || `点位${idx + 1}`, direction: "top" }
-      });
+      // 判断是否为优惠券
+      const isCoupon = p.type === "ad";
+      
+      let marker;
+      if (isCoupon) {
+        // 优惠券使用特殊图标（金色，带"券"字）
+        // 创建SVG图标
+        const svgString = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+            <defs>
+              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#FFA500;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <circle cx="25" cy="25" r="22" fill="url(#goldGrad)" stroke="#FF8C00" stroke-width="2"/>
+            <circle cx="25" cy="25" r="18" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.5"/>
+            <text x="25" y="32" font-size="20" font-weight="bold" text-anchor="middle" fill="#FF6600" font-family="Arial, sans-serif">券</text>
+          </svg>
+        `;
+        const icon = new window.AMap.Icon({
+          size: new window.AMap.Size(50, 50),
+          image: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString),
+          imageSize: new window.AMap.Size(50, 50),
+          imageOffset: new window.AMap.Pixel(-25, -25)
+        });
+        
+        marker = new window.AMap.Marker({
+          position: p.position,
+          map,
+          icon: icon,
+          title: p.title || p.name,
+          zIndex: 100 // 优惠券在上层
+        });
+        
+        // 添加点击事件
+        marker.on('click', () => {
+          onCouponClick?.(p);
+        });
+      } else {
+        // 普通点位
+        marker = new window.AMap.Marker({
+          position: p.position,
+          map,
+          label: { content: p.name || `点位${idx + 1}`, direction: "top" }
+        });
+      }
+      
       overlayRef.current.push(marker);
     });
 
