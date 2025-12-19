@@ -5,3 +5,10 @@
 这里是集成了语音识别功能与优惠卷推送功能，同时支持移动端和PC端的APP下载：https://illustrious-duckanoo-ea887d.netlify.app/。
 
 AI意图与路线规划：集成大模型支持自然语言，自动提取POI规划合理路线，使用高德JS API进行动态路径绘制与路标标记、信息窗口交互等功能（具体使用流程见上图）。
+ 鸿蒙原生适配说明 (HarmonyOS)
+
+ 比赛规则合规性说明：本仓库包含完整的 HarmonyOS 原生应用代码，满足“提交代码仓库中包含鸿蒙应用核心代码”之要求。
+
+鸿蒙模块路径： `./CityWalkProject`  
+运行方式： 该目录为标准 DevEco Studio 工程。使用 ArkTS Web 组件加载云端服务，直接使用 DevEco Studio 打开该目录即可编译运行。
+
