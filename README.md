@@ -9,6 +9,6 @@ AI意图与路线规划：集成大模型支持自然语言，自动提取POI规
 
  比赛规则合规性说明：本仓库包含完整的 HarmonyOS 原生应用代码，满足“提交代码仓库中包含鸿蒙应用核心代码”之要求。
 
-鸿蒙模块路径： `./CityWalkProject`  
+鸿蒙模块路径： `./Web Harmonyos`  
 运行方式： 该目录为标准 DevEco Studio 工程。使用 ArkTS Web 组件加载云端服务，直接使用 DevEco Studio 打开该目录即可编译运行。
 
